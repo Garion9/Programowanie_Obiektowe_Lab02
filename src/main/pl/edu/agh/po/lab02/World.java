@@ -1,18 +1,18 @@
 package pl.edu.agh.po.lab02;
 
+import java.util.List;
+
 public class World {
     public static void main(String[] args) {
-        Vector2d position1 = new Vector2d(1,2);
-        System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2,1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));
 
-        MapDirection mapdir = MapDirection.SOUTH;
-        System.out.println(mapdir);
-        System.out.println(mapdir.next());
-        System.out.println(mapdir.previous());
-        System.out.println(mapdir.toUnitVector());
+        Animal zwierzak = new Animal();
+        String[] input = {"f", "r", "gibberish", "forward", "left", "b", "a", "f", "f", "f", "f", "f"};
+        List<MoveDirection> directions = OptionsParser.parse(input);
+        for (MoveDirection argument: directions) {
+            zwierzak.move(argument);
+            System.out.println(zwierzak);
+        }
+        //zostal do zrobienia punkt 9
     }
 }
 

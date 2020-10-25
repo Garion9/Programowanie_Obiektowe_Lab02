@@ -7,37 +7,46 @@ import static org.junit.jupiter.api.Assertions.*;
 class Vector2dTest {
 
     @Test
-    void testEquals() {
+    void testEqualsSameInstance() {
         // given
         Vector2d vector2d = new Vector2d(1,2);
         // when
         boolean result = vector2d.equals(vector2d);
         //then
-        assertEquals(true, result);
+        assertTrue(result);
+    }
 
+    @Test
+    void testEqualsDifferentClass() {
         // given
-        vector2d = new Vector2d(2,3);
+        Vector2d vector2d = new Vector2d(1,2);
         MapDirection mapdir = MapDirection.NORTH;
         // when
-        result = vector2d.equals(mapdir);
-        // then
-        assertEquals(false, result);
+        boolean result = vector2d.equals(mapdir);
+        //then
+        assertFalse(result);
+    }
 
+    @Test
+    void testEqualsDifferentValues() {
         // given
         Vector2d one = new Vector2d(1,2);
         Vector2d another = new Vector2d(2,3);
         // when
-        result = one.equals(another);
-        // then
-        assertEquals(false, result);
-
-        //given
-        one = new Vector2d (1,2);
-        another = new Vector2d(1,2);
-        //when
-        result = one.equals(another);
+        boolean result = one.equals(another);
         //then
-        assertEquals(true,result);
+        assertFalse(result);
+    }
+
+    @Test
+    void testEqualsSameValues() {
+        // given
+        Vector2d one = new Vector2d (1,2);
+        Vector2d another = new Vector2d(1,2);
+        // when
+        boolean result = one.equals(another);
+        //then
+        assertTrue(result);
     }
 
     @Test
@@ -51,94 +60,117 @@ class Vector2dTest {
     }
 
     @Test
-    void testPrecedes() {
+    void testPrecedesEqualVectors() {
         // given
         Vector2d one = new Vector2d(3,4);
         Vector2d another = new Vector2d(3,4);
         // when
         boolean result = one.precedes(another);
         // then
-        assertEquals(true, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(2,4);
-        // when
-        result = one.precedes(another);
-        // then
-        assertEquals(true, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(3,3);
-        // when
-        result = one.precedes(another);
-        // then
-        assertEquals(true, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(4,4);
-        // when
-        result = one.precedes(another);
-        // then
-        assertEquals(false, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(3,5);
-        // when
-        result = one.precedes(another);
-        // then
-        assertEquals(false, result);
+        assertTrue(result);
     }
 
     @Test
-    void testFollows() {
+    void testPrecedesLeft() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(2,4);
+        // when
+        boolean result = one.precedes(another);
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void testPrecedesBottom() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(3,3);
+        // when
+        boolean result = one.precedes(another);
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void testPrecedesRight() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(4,4);
+        // when
+        boolean result = one.precedes(another);
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void testPrecedesUp() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(3,5);
+        // when
+        boolean result = one.precedes(another);
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void testFollowsEqualVectors() {
         // given
         Vector2d one = new Vector2d(3,4);
         Vector2d another = new Vector2d(3,4);
         // when
         boolean result = one.follows(another);
         // then
-        assertEquals(true, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(2,4);
-        // when
-        result = one.follows(another);
-        // then
-        assertEquals(false, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(3,3);
-        // when
-        result = one.follows(another);
-        // then
-        assertEquals(false, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(4,4);
-        // when
-        result = one.follows(another);
-        // then
-        assertEquals(true, result);
-
-        // given
-        one = new Vector2d(3,4);
-        another = new Vector2d(3,5);
-        // when
-        result = one.follows(another);
-        // then
-        assertEquals(true, result);
-
+        assertTrue(result);
     }
 
     @Test
-    void testUpperRight() {
+    void testFollowsLeft() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(2,4);
+        // when
+        boolean result = one.follows(another);
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void testFollowsBottom() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(3,3);
+        // when
+        boolean result = one.follows(another);
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    void testFollowsRight() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(4,4);
+        // when
+        boolean result = one.follows(another);
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void testFollowsUp() {
+        // given
+        Vector2d one = new Vector2d(3,4);
+        Vector2d another = new Vector2d(3,5);
+        // when
+        boolean result = one.follows(another);
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    void testUpperRightDifferentVectors() {
         // given
         Vector2d one = new Vector2d(2,13);
         Vector2d another = new Vector2d(7, 3);
@@ -146,18 +178,21 @@ class Vector2dTest {
         Vector2d result = one.upperRight(another);
         // then
         assertEquals(new Vector2d(7,13),result);
+    }
 
+    @Test
+    void testUpperRightEqualVectors() {
         // given
-        one = new Vector2d(7,13);
-        another = new Vector2d(7, 13);
+        Vector2d one = new Vector2d(7,13);
+        Vector2d another = new Vector2d(7, 13);
         // when
-        result = one.upperRight(another);
+        Vector2d result = one.upperRight(another);
         // then
         assertEquals(new Vector2d(7,13),result);
     }
 
     @Test
-    void testLowerLeft() {
+    void testLowerLeftDifferentVectors() {
         // given
         Vector2d one = new Vector2d(2,13);
         Vector2d another = new Vector2d(7, 3);
@@ -165,18 +200,21 @@ class Vector2dTest {
         Vector2d result = one.lowerLeft(another);
         // then
         assertEquals(new Vector2d(2,3),result);
+    }
 
+    @Test
+    void testLowerLeftEqualVectors() {
         // given
-        one = new Vector2d(2,3);
-        another = new Vector2d(2, 3);
+        Vector2d one = new Vector2d(2,3);
+        Vector2d another = new Vector2d(2, 3);
         // when
-        result = one.lowerLeft(another);
+        Vector2d result = one.lowerLeft(another);
         // then
         assertEquals(new Vector2d(2,3),result);
     }
 
     @Test
-    void testAdd() {
+    void testAddNotEqualZero() {
         // given
         Vector2d one = new Vector2d(1,2);
         Vector2d another = new Vector2d(3,4);
@@ -184,18 +222,21 @@ class Vector2dTest {
         Vector2d result = one.add(another);
         // then
         assertEquals(new Vector2d(1+3,2+4), result);
+    }
 
+    @Test
+    void testAddEqualZero() {
         // given
-        one = new Vector2d(7,13);
-        another = new Vector2d(-7,-13);
+        Vector2d one = new Vector2d(7,13);
+        Vector2d another = new Vector2d(-7,-13);
         // when
-        result = one.add(another);
+        Vector2d result = one.add(another);
         // then
         assertEquals(new Vector2d(0,0), result);
     }
 
     @Test
-    void testSubtract() {
+    void testSubtractNotEqualZero() {
         // given
         Vector2d one = new Vector2d(3,4);
         Vector2d another = new Vector2d(1,2);
@@ -203,29 +244,35 @@ class Vector2dTest {
         Vector2d result = one.subtract(another);
         // then
         assertEquals(new Vector2d(2,2), result);
+    }
 
+    @Test
+    void testSubtractEqualZero() {
         // given
-        one = new Vector2d(7,13);
-        another = new Vector2d(7,13);
+        Vector2d one = new Vector2d(7,13);
+        Vector2d another = new Vector2d(7,13);
         // when
-        result = one.subtract(another);
+        Vector2d result = one.subtract(another);
         // then
         assertEquals(new Vector2d(0,0), result);
     }
 
     @Test
-    void testOpposite() {
+    void testOppositeNotZero() {
         // given
         Vector2d vector = new Vector2d(7,13);
         //when
         Vector2d result = vector.opposite();
         //then
         assertEquals(new Vector2d(-7,-13), result);
+    }
 
+    @Test
+    void testOppositeZero() {
         // given
-        vector = new Vector2d(0,0);
+        Vector2d vector = new Vector2d(0,0);
         //when
-        result = vector.opposite();
+        Vector2d result = vector.opposite();
         //then
         assertEquals(new Vector2d(0,0), result);
     }

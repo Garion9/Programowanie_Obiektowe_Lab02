@@ -14,55 +14,19 @@ public class Vector2d {
     }
 
     public boolean precedes(Vector2d other) {
-        if (this.x >= other.x && this.y >= other.y)
-            return true;
-        else
-            return false;
+        return (this.x >= other.x && this.y >= other.y);
     }
 
     public boolean follows(Vector2d other) {
-        if (this.x <= other.x && this.y <= other.y)
-            return true;
-        else
-            return false;
+        return (this.x <= other.x && this.y <= other.y);
     }
 
     public Vector2d upperRight(Vector2d other) {
-        int maxx;
-        int maxy;
-        if (this.x >= other.x) {
-            maxx = this.x;
-        }
-        else {
-            maxx = other.x;
-        }
-        if (this.y >= other.y) {
-            maxy = this.y;
-        }
-        else {
-            maxy = other.y;
-        }
-        Vector2d result = new Vector2d(maxx, maxy);
-        return result;
+        return new Vector2d(Math.max(this.x, other.x), Math.max(this.y, other.y));
     }
 
     public Vector2d lowerLeft(Vector2d other) {
-        int minx;
-        int miny;
-        if (this.x <= other.x) {
-            minx = this.x;
-        }
-        else {
-            minx = other.x;
-        }
-        if (this.y <= other.y) {
-            miny = this.y;
-        }
-        else {
-            miny = other.y;
-        }
-        Vector2d result = new Vector2d(minx, miny);
-        return result;
+        return new Vector2d(Math.min(this.x, other.x), Math.min(this.y, other.y));
     }
 
     public Vector2d add(Vector2d other) {
@@ -81,14 +45,10 @@ public class Vector2d {
         if (!(other instanceof Vector2d))
             return false;
         Vector2d that = (Vector2d) other;
-        if (this.x == that.x && this.y == that.y)
-            return true;
-        else
-            return false;
+        return ((this.x == that.x && this.y == that.y) || this.hashCode() == other.hashCode());
     }
 
     public Vector2d opposite() {
-        Vector2d result = new Vector2d((-1)*this.x, (-1)*this.y);
-        return result;
+        return new Vector2d((-1)*this.x, (-1)*this.y);
     }
 }

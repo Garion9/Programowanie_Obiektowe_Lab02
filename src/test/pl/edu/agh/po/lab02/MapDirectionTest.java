@@ -7,63 +7,81 @@ import static org.junit.jupiter.api.Assertions.*;
 class MapDirectionTest {
 
     @Test
-    void next() {
+    void nextFromNorth() {
         // given
         MapDirection mapdirection = MapDirection.NORTH;
         // when
         MapDirection result = mapdirection.next();
         // then
         assertEquals(MapDirection.EAST, result);
+    }
 
+    @Test
+    void nextFromEast() {
         // given
-        mapdirection = MapDirection.EAST;
+        MapDirection mapdirection = MapDirection.EAST;
         // when
-        result = mapdirection.next();
+        MapDirection result = mapdirection.next();
         // then
         assertEquals(MapDirection.SOUTH, result);
+    }
 
+    @Test
+    void nextFromSouth() {
         // given
-        mapdirection = MapDirection.SOUTH;
+        MapDirection mapdirection = MapDirection.SOUTH;
         // when
-        result = mapdirection.next();
+        MapDirection result = mapdirection.next();
         // then
         assertEquals(MapDirection.WEST, result);
+    }
 
+    @Test
+    void nextFromWest() {
         // given
-        mapdirection = MapDirection.WEST;
+        MapDirection mapdirection = MapDirection.WEST;
         // when
-        result = mapdirection.next();
+        MapDirection result = mapdirection.next();
         // then
         assertEquals(MapDirection.NORTH, result);
     }
 
     @Test
-    void previous() {
+    void previousFromNorth() {
         // given
         MapDirection mapdirection = MapDirection.NORTH;
         // when
         MapDirection result = mapdirection.previous();
         //then
         assertEquals(MapDirection.WEST, result);
+    }
 
+    @Test
+    void previousFromWest() {
         // given
-        mapdirection = MapDirection.WEST;
+        MapDirection mapdirection = MapDirection.WEST;
         // when
-        result = mapdirection.previous();
+        MapDirection result = mapdirection.previous();
         //then
         assertEquals(MapDirection.SOUTH, result);
+    }
 
+    @Test
+    void previousFromSouth() {
         // given
-        mapdirection = MapDirection.SOUTH;
+        MapDirection mapdirection = MapDirection.SOUTH;
         // when
-        result = mapdirection.previous();
+        MapDirection result = mapdirection.previous();
         //then
         assertEquals(MapDirection.EAST, result);
+    }
 
+    @Test
+    void previousFromEast() {
         // given
-        mapdirection = MapDirection.EAST;
+        MapDirection mapdirection = MapDirection.EAST;
         // when
-        result = mapdirection.previous();
+        MapDirection result = mapdirection.previous();
         //then
         assertEquals(MapDirection.NORTH, result);
     }
